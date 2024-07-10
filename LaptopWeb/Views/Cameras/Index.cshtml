@@ -1,0 +1,45 @@
+﻿  @model List<LaptopWeb.Models.Cameras>
+
+<h2 class="text-center mb-5">List Of Cameras</h2>
+
+<div class="row mb-5">
+    <div class="col">
+        <a class="btn btn-primary" asp-controller="Cameras" asp-action="Create">New Product</a>
+    </div>
+    <div class="col">
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Brand</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Image</th>
+            <th>Created At</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cameras in Model)
+        {
+            <tr>
+                <td>@cameras.Id</td>
+                <td>@cameras.Name</td>
+                <td>@cameras.Brand</td>
+                <td>@cameras.Category</td>
+                <td>@(cameras.Price)$</td>
+                <td><img src="/Images/@cameras.ImageFileName" width="100" /></td>
+                <td>@cameras.CreatedAt.ToString("MM/dd/yyyy")</td>
+                <td style="white-space: nowrap">
+                    <a class="btn btn-info btn-sm" asp-controller="Cameras" asp-action="Details" asp-route-id="@cameras.Id">Details</a>
+                    <a class="btn btn-primary btn-sm" asp-controller="Cameras" asp-action="Edit" asp-route-id="@cameras.Id">Edit</a>
+                    <a class="btn btn-danger btn-sm" asp-controller="Cameras" asp-action="Delete" asp-route-id="@cameras.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
